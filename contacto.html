@@ -1,0 +1,50 @@
+<html>
+<head>
+	<script src="https://www.google.com/recaptcha/api.js?render=YOURSITEKEY"></script>
+	
+	<title>CONTACTO</title>
+	
+</head>
+<body>
+<form id="formulario-contacto">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre"><br>
+  <label for="apellido">Apellido:</label><br>
+  <input type="text" id="apellido" name="apellido"><br>
+  <label for="telefono">Telefono:</label><br>
+  <input type="text" id="telefono" name="telefono"><br>
+  <label for="email">Correo electronico:</label><br>
+  <input type="email" id="email" name="email"><br>
+  <label for="consulta">Consulta:</label><br>
+  <textarea id="consulta" name="consulta" rows="5" cols="40"></textarea><br><br>
+  <button type="submit">Enviar</button>
+</form> 
+
+<script>
+  // Verificar el captcha cuando se envia el formulario
+  document.getElementById('formulario-contacto').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevenir el env®™o del formulario
+
+    grecaptcha.execute('YOURSITEKEY', {action: 'submit'}).then(function(token) {
+      // Si el captcha es v®¢lido, enviar los datos del formulario a trav®¶s de AJAX
+      var formData = new FormData(document.getElementById('formulario-contacto'));
+      formData.append('g-recaptcha-response', token);
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'process-form.php', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // Mostrar mensaje de ®¶xito al usuario
+          alert('ÅGracias por contactarnos! Nos pondremos en contacto contigo lo antes posible.');
+        } else {
+          // Mostrar mensaje de error al usuario
+          alert('Se ha producido un error al enviar el formulario. Por favor, vuelve a intentarlo.');
+        }
+      };
+      xhr.send(formData);
+    });
+  });
+</script>
+    
+</body>
+</html>
