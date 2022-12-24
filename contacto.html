@@ -8,13 +8,13 @@
 <body>
 <form id="formulario-contacto">
   <label for="nombre">Nombre:</label><br>
-  <input type="text" id="nombre" name="nombre"><br>
+  <input type="text" id="nombre" name="Nombre"><br>
   <label for="apellido">Apellido:</label><br>
-  <input type="text" id="apellido" name="apellido"><br>
+  <input type="text" id="apellido" name="Apellido"><br>
   <label for="telefono">Telefono:</label><br>
-  <input type="text" id="telefono" name="telefono"><br>
+  <input type="text" id="telefono" name="Telefono"><br>
   <label for="email">Correo electronico:</label><br>
-  <input type="email" id="email" name="email"><br>
+  <input type="email" id="email" name="Email"><br>
   <label for="consulta">Consulta:</label><br>
   <textarea id="consulta" name="consulta" rows="5" cols="40"></textarea><br><br>
   <button type="submit">Enviar</button>
@@ -23,10 +23,10 @@
 <script>
   // Verificar el captcha cuando se envia el formulario
   document.getElementById('formulario-contacto').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevenir el env®™o del formulario
+    event.preventDefault(); // Prevenir el envio del formulario
 
     grecaptcha.execute('YOURSITEKEY', {action: 'submit'}).then(function(token) {
-      // Si el captcha es v®¢lido, enviar los datos del formulario a trav®¶s de AJAX
+      // Si el captcha es valido, enviar los datos del formulario a traves de AJAX
       var formData = new FormData(document.getElementById('formulario-contacto'));
       formData.append('g-recaptcha-response', token);
       
@@ -34,8 +34,8 @@
       xhr.open('POST', 'process-form.php', true);
       xhr.onload = function() {
         if (xhr.status === 200) {
-          // Mostrar mensaje de ®¶xito al usuario
-          alert('ÅGracias por contactarnos! Nos pondremos en contacto contigo lo antes posible.');
+          // Mostrar mensaje de exito al usuario
+          alert('Gracias por contactarnos! Nos pondremos en contacto contigo lo antes posible.');
         } else {
           // Mostrar mensaje de error al usuario
           alert('Se ha producido un error al enviar el formulario. Por favor, vuelve a intentarlo.');
